@@ -16,7 +16,7 @@ export default function ProductContainer({ wine }) {
               {wine.quantity} cl
             </h3>
             <div className="text-xs flex justify-end gap-x-1">
-              4.5
+              {wine.ratings}
               <span>
                 <MdOutlineStar className=" text-yellow-400 text-sm" />
               </span>

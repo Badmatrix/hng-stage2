@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import CartInNav from "./CartInNav";
 import BarIcon from "./BarIcon";
 
-export default function SearchForm({isHiddenForm,handleClick}) {
+export default function SearchForm({handleClick,carts}) {
   
   return (
     <div className="flex justify-between md:gap-5 ">
@@ -9,9 +10,12 @@ export default function SearchForm({isHiddenForm,handleClick}) {
         className="block md:hidden cursor-pointer font-extrabold text-3xl text-wine-900 lowercase"
         onClick={handleClick}
       >
-        {isHiddenForm ? <BarIcon /> : 'x'}
+         <BarIcon /> 
       </div>
-      <form action="" className={`${isHiddenForm ? "hidden" : "block"} lg:block`}>
+      <form
+        action=""
+        className= "hidden lg:block"
+      >
         <input
           type="search"
           placeholder="search"
@@ -19,7 +23,7 @@ export default function SearchForm({isHiddenForm,handleClick}) {
         />
       </form>
 
-      <CartInNav />
+      <CartInNav carts={carts} />
     </div>
   );
 }

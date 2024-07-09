@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 import { MdOutlineStar } from "react-icons/md";
 import Button from "./Button";
-export default function ResultInfo({ result }) {
+import { Link, useNavigate } from "react-router-dom";
+export default function ResultInfo({ result, handleAddtoCart }) {
+  const navigate = useNavigate();
+
   return (
     <section className="grid md:grid-cols-4 md:align-bottom items-center align-middle justify-center">
       <div className="md:flex md:items-center gap-3 col-span-3">
@@ -13,8 +16,10 @@ export default function ResultInfo({ result }) {
             {result.productName} | {result.brand} | {result.alcoholPerc} |{" "}
             {result.quantity} cl
           </h1>
-                  <div className="flex justify-between">
-                      <h1 className="md:hidden font-bold">{ result.price.toLocaleString()}</h1>
+          <div className="flex justify-between">
+            <h1 className="md:hidden font-bold">
+              {result.price.toLocaleString()}
+            </h1>
             <div className="flex items-center font-bold text-sm sm:text-lg md:text-xl">
               <span className="mr-2">{result.ratings || "4.5"}</span>
 
@@ -32,8 +37,13 @@ export default function ResultInfo({ result }) {
         </div>
       </div>
       <div className=" col-span-1 space-y-4 sm:space-x-2 md:space-x-0">
-        <Button type="text-white md:block">shop</Button>
-        <Button type="bg-white text-wine-800 hover:text-white md:block">
+        <Button type="text-white md:block">
+          <Link to="/order">shop</Link>
+        </Button>
+        <Button
+          type="bg-white text-wine-800 hover:text-white md:block"
+          onclick={() => handleAddtoCart(result)}
+        >
           add to cart
         </Button>
       </div>

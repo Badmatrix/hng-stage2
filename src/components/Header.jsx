@@ -1,16 +1,17 @@
+/* eslint-disable react/prop-types */
 import ImageText from "./ImageText";
 import Navbar from "./Navbar";
 
-export default function Header() {
+export default function Header({carts}) {
   return (
     <header className="relative w-full bg-wine-400 h-[300px]">
       <img
-        src="/images/picunsplash.jpg"
+        src="/public/images/deleece-cook-1w8GFi871tg-unsplash.jpg"
         alt="nav-image"
-        className="h-full w-full object-cover object-center"
+        className="h-full w-full object-cover"
       />
       <ImageText/>
-      <Navbar />
+      <Navbar carts={carts} />
     </header>
   );
 }
