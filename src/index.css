@@ -8,7 +8,7 @@ body{
     @apply bg-red-50/10
 }
 .icon{
-    @apply border border-wine-800 rounded-full p-2 bg-wine-800
+    @apply border border-wine-800 rounded-full md:p-3 p-2 bg-wine-800 
 }
 input::placeholder{
     @apply opacity-20 text-sm

@@ -2,13 +2,13 @@
 import CartInNav from "./CartInNav";
 import BarIcon from "./BarIcon";
 
-export default function SearchForm({handleClick,carts}) {
+export default function SearchForm({carts}) {
   
   return (
     <div className="flex justify-between md:gap-5 ">
       <div
-        className="block md:hidden cursor-pointer font-extrabold text-3xl text-wine-900 lowercase"
-        onClick={handleClick}
+        className="block md:hidden cursor-pointer font-extrabold text-6xl text-wine-900 lowercase"
+        
       >
          <BarIcon /> 
       </div>

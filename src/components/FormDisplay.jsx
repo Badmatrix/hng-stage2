@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import DisplayList from "./DisplayList";
 const locationList = [
   {
@@ -37,9 +38,9 @@ const locationList = [
     price: 3500,
   },
 ];
-export default function FormDisplay() {
+export default function FormDisplay({type}) {
   return (
-    <div className="lg:col-span-1">
+    <div className={`${type} lg:col-span-1 lg:block`}>
       <h2 className=" font-bold text-2xl text-wine-900 m-4">your order</h2>
       <div className="border-[0.5px] border-wine-800 px-5 bg-wine-70 py-3">
         <header className="flex justify-between font-bold text-xl">
@@ -110,7 +111,7 @@ export default function FormDisplay() {
         </label>
       </div>
       <div className="flex justify-center">
-        <button className=" ">place your order</button>
+        <button className=" disabled:cursor-not-allowed" disabled>place your order</button>
       </div>
     </div>
   );

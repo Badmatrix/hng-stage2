@@ -6,14 +6,18 @@ import CartItem from "../components/CartItem";
 
 
 export default function Cart({carts}) {
- const nav=useNavigate()
+  const nav = useNavigate()
+  window.scroll(0, 0);
+  
   return (
     <div className="mx-10 md:my-10 my-5 capitalize mb-10 lg:mb-20">
-      <h1 className="text-4xl py-2 text-wine-800 border-b border-gray-100">carts</h1>
+      <h1 className="text-4xl py-2 text-wine-800 border-b border-gray-100">
+        carts
+      </h1>
       {carts.length === 0 ? (
-        <section className="">
-          empty cart goto
-          <div className="text-wine-800 font-bold underline text-2xl">
+        <section className="my-10 space-y-2">
+          <span>empty cart goto</span>
+          <div className="text-wine-500 hover:text-wine-800 font-bold hover:underline text-2xl">
             <Link to="/">product &rarr;</Link>
           </div>
         </section>

@@ -1,54 +1,51 @@
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Products from "./pages/Products";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+
 import CheckoutList from "./pages/CheckoutList";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import { useState } from "react";
-
-const fakeCart = [
-  {
-    productId: 1,
-    productName: "martini rose",
-    image: "/images/PixCut-removebg_thumbnail 1 (1).svg",
-    price: 6000,
-    brand: "red wine",
-    alcoholPerc: "12%",
-    quantity: 75,
-    ratings: 4.5,
-    details:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos doloribus assumenda eum ab voluptatem aspernatur est totam iure a numquam fuga id ullam praesentium, tempore maiores officiis ducimus fugiat nostrum.",
-  },
-];
+import AppLayout from "./components/AppLayout";
 
 export default function App() {
   const [carts, setCarts] = useState([]);
+  const [cartBtnState, setCartBtnState] = useState(false);
 
   function handleAddtoCart(item) {
     const exist = carts.find((el) => el.productId === item.productId);
 
-    if (!exist) setCarts((cart) => [...cart, item]);
+    if (!exist) {
+      setCarts((cart) => [...cart, item]);
+      setCartBtnState((btn) => !btn);
+    }
+    if (exist) {
+      const newCart = carts.filter((cart) => cart.productId !== item.productId);
+      setCarts(newCart)
+      setCartBtnState((btn) => !btn);
+    }
+    window.scrollTo(0,0)
   }
   return (
-    <div>
-      <BrowserRouter>
-        <Header carts={ carts} />
-        <Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AppLayout carts={carts} />}>
           <Route index element={<Products />} />
           <Route
-            path="/details/:id"
+            path="details/:id"
             element={
-              <ProductDetail carts={carts} handleAddtoCart={handleAddtoCart} />
+              <ProductDetail
+                carts={carts}
+                handleAddtoCart={handleAddtoCart}
+                cartBtnState={cartBtnState}
+              />
             }
           />
           <Route path="order" element={<CheckoutList />} />
           <Route path="cart" element={<Cart carts={carts} />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </div>
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
