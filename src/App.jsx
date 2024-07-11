@@ -10,21 +10,24 @@ import AppLayout from "./components/AppLayout";
 
 export default function App() {
   const [carts, setCarts] = useState([]);
-  const [cartBtnState, setCartBtnState] = useState(false);
+  const [btnCart,setBtnCart]=useState(false)
 
+  function handleDeleteCart(item) {
+    const newCart = carts.filter((cart) => cart.productId !== item.productId);
+    setCarts(newCart);
+  }
   function handleAddtoCart(item) {
     const exist = carts.find((el) => el.productId === item.productId);
 
     if (!exist) {
       setCarts((cart) => [...cart, item]);
-      setCartBtnState((btn) => !btn);
+      setBtnCart(btn=>!btn)
     }
     if (exist) {
-      const newCart = carts.filter((cart) => cart.productId !== item.productId);
-      setCarts(newCart)
-      setCartBtnState((btn) => !btn);
+      handleDeleteCart(item)
+      setBtnCart((btn) => !btn);
     }
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   }
   return (
     <BrowserRouter>
@@ -37,12 +40,15 @@ export default function App() {
               <ProductDetail
                 carts={carts}
                 handleAddtoCart={handleAddtoCart}
-                cartBtnState={cartBtnState}
+                btnCart={btnCart}
               />
             }
           />
           <Route path="order" element={<CheckoutList />} />
-          <Route path="cart" element={<Cart carts={carts} />} />
+          <Route
+            path="cart"
+            element={<Cart carts={carts} handleDeleteCart={handleDeleteCart} />}
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

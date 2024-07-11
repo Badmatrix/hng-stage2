@@ -5,9 +5,9 @@ import Button from "../components/Button";
 import CartItem from "../components/CartItem";
 
 
-export default function Cart({carts}) {
+export default function Cart({carts,handleDeleteCart}) {
   const nav = useNavigate()
-  window.scroll(0, 0);
+  // window.scroll(0, 0);
   
   return (
     <div className="mx-10 md:my-10 my-5 capitalize mb-10 lg:mb-20">
@@ -25,7 +25,12 @@ export default function Cart({carts}) {
         <section className="my-20 mx-10">
           <ul>
             {carts.map((item) => (
-              <CartItem key={item.productId} item={item} />
+              <CartItem
+                key={item.productId}
+                item={item}
+                carts={carts}
+                handleDeleteCart={handleDeleteCart}
+              />
             ))}
           </ul>
           <div className="flex justify-end space-x-4">

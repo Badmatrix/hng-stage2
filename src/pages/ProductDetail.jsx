@@ -8,7 +8,8 @@ import ResultDetail from "../components/ResultDetail";
 export default function ProductDetail({
   carts,
   handleAddtoCart,
-  cartBtnState,
+  btnCart
+ 
 }) {
   const { id } = useParams();
   const result = WineProducts.find((wine) => wine.productId === Number(id));
@@ -19,7 +20,7 @@ export default function ProductDetail({
         result={result}
         carts={carts}
         handleAddtoCart={handleAddtoCart}
-        cartBtnState={cartBtnState}
+        btnCart={btnCart}
       />
       <ResultDetail result={result} />
     </section>

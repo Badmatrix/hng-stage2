@@ -1,12 +1,9 @@
 /* eslint-disable react/prop-types */
 import { MdOutlineStar } from "react-icons/md";
 import Button from "./Button";
-import { Link } from "react-router-dom";
-export default function ResultInfo({
-  result,
-  handleAddtoCart,
-  cartBtnState
-}) {
+import { Link, useNavigate } from "react-router-dom";
+export default function ResultInfo({ result, handleAddtoCart, btnCart  }) {
+  const navigate = useNavigate();
   return (
     <section className="grid md:grid-cols-4 md:align-bottom items-center align-middle justify-center">
       <div className="md:flex md:items-center gap-3 col-span-3">
@@ -44,9 +41,12 @@ export default function ResultInfo({
         </Button>
         <Button
           type="bg-white text-wine-800 hover:text-white md:block"
-          onclick={() => handleAddtoCart(result)}
+          onclick={() => {
+            handleAddtoCart(result);
+            navigate("/cart");
+          }}
         >
-          {!cartBtnState ? "add to cart" : "remove"}
+          {!btnCart ?"add to cart":"remove"}
         </Button>
       </div>
     </section>

@@ -8,6 +8,7 @@ const WineProducts = [
     alcoholPerc: "12%",
     quantity: 75,
     ratings: 4.5,
+    isInCart: false,
   },
 
   {
@@ -19,6 +20,7 @@ const WineProducts = [
     alcoholPerc: "15%",
     quantity: 75,
     ratings: 4.5,
+    isInCart: false,
   },
   {
     productId: 3,
@@ -29,6 +31,7 @@ const WineProducts = [
     alcoholPerc: "12%",
     quantity: 75,
     ratings: 4.8,
+    isInCart: false,
   },
   {
     productId: 4,
@@ -39,6 +42,7 @@ const WineProducts = [
     alcoholPerc: "17%",
     quantity: 75,
     ratings: 4.7,
+    isInCart: false,
   },
   {
     productId: 5,
@@ -85,7 +89,7 @@ const WineProducts = [
     brand: "red wine",
     alcoholPerc: "12%",
     quantity: 75,
-    ratings: 4.0,
+    ratings: 4.5,
   },
 ];
 export default WineProducts
